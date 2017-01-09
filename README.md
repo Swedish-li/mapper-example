@@ -1,2 +1,2 @@
 # mapper-example
->MyBatis同用mapper示例
+>MyBatis通用mapper示例
