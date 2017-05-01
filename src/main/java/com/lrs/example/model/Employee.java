@@ -27,7 +27,7 @@ public class Employee {
 
 	private String job;
 
-	private String mgr;
+	private int mgr;
 
 	private Date hiredate;
 
