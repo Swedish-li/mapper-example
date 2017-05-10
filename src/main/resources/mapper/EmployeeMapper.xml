@@ -18,7 +18,7 @@
 			SELECT * FROM(
 		        SELECT A.*,ROWNUM rn
 		        FROM 
-		            (SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM emp ) A
+		            (SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM emp ORDER BY sal) A
 		        WHERE ROWNUM<=#{end}
 				)  TL 
 			WHERE rn >=#{start}

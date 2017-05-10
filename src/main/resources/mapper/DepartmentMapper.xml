@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrs.example.mapper.DepartmentMapper">
+	<!-- 存储过程调用  -->
+	<insert id="insertDept" statementType="CALLABLE" parameterType="Department">
+		{call p_insert_dept(
+			#{id,mode=IN,jdbcType=VARCHAR},
+			#{name,mode=IN,jdbcType=VARCHAR},
+			#{location,mode=IN,jdbcType=VARCHAR},
+			#{status,mode=OUT,jdbcType=VARCHAR}
+		)}
+	</insert>
+</mapper>

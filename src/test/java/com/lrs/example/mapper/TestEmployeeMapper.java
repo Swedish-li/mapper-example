@@ -19,14 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lrs.example.model.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class TestEmployeeMapper {
 	@Resource
 	private EmployeeMapper mapper;
 
 	@Test
-	public void testQuery() {
+	public void testQueryAll() {
 		List<Employee> list = mapper.selectAll();
 		assertNotNull(list);
 		assertEquals(list.size(), 16);
