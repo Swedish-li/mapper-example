@@ -16,6 +16,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.lrs.example.model.Employee;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,6 +44,16 @@ public class TestEmployeeMapper {
 		List<Employee> list = mapper.query(5, 8);
 		assertNotNull(list);
 		assertEquals(4, list.size());
+	}
+
+	@Test
+	public void testPageHelper() {
+		PageHelper.startPage(5, 4);
+		List<Employee> list = mapper.selectAll();
+		assertNotNull(list);
+		assertEquals(4, list.size());
+		// 分页时，实际返回的结果list类型是Page<E>，如果想取出分页信息，需要强制转换为Page<E>
+		assertEquals(16, ((Page<Employee>) list).getTotal());
 	}
 
 	/**
