@@ -50,7 +50,7 @@ public class SimpleMybatis {
 	}
 
 	@Test
-	public void testInterface() {
+	public void testPageInteceptor() {
 
 		// MyBatis配置
 		final Configuration configuration = getConfiguration();
@@ -65,8 +65,8 @@ public class SimpleMybatis {
 				SqlCommandType.SELECT).resultMaps(getResultMaps(configuration)).cache(getCache()).build();
 		configuration.addMappedStatement(ms);
 		SqlSession sqlSession = new DefaultSqlSession(configuration, executor, false);
-		
-		List<Employee> list = sqlSession.selectList("selectAll",new RowBounds(2,3));
+
+		List<Employee> list = sqlSession.selectList("selectAll", new RowBounds(2, 3));
 
 		for (Employee employee : list) {
 			log.info(employee.toString());
@@ -131,9 +131,9 @@ public class SimpleMybatis {
 						add(new ResultMapping.Builder(config, "job", "job", String.class).build());
 						add(new ResultMapping.Builder(config, "mgr", "mgr", int.class).build());
 						add(new ResultMapping.Builder(config, "hiredate", "hiredate", java.sql.Date.class).build());
-						add(new ResultMapping.Builder(config, "sal","sal",new BigDecimalTypeHandler()).build());
-						add(new ResultMapping.Builder(config, "comm","comm",new BigDecimalTypeHandler()).build());
-						add(new ResultMapping.Builder(config, "deptNo","dept_no",Integer.class).build());
+						add(new ResultMapping.Builder(config, "sal", "sal", new BigDecimalTypeHandler()).build());
+						add(new ResultMapping.Builder(config, "comm", "comm", new BigDecimalTypeHandler()).build());
+						add(new ResultMapping.Builder(config, "deptNo", "dept_no", Integer.class).build());
 					}
 				}).build();
 
@@ -168,5 +168,20 @@ public class SimpleMybatis {
 		msBuilder.cache(getCache());
 
 		return msBuilder.build();
+	}
+
+	@Test
+	public void testSelect() {
+		Configuration configuration = getConfiguration();
+		SqlSource sqlSource = new StaticSqlSource(configuration, "SELECT * FROM emp where empno = ?");
+		MappedStatement ms = getMappedStatement(configuration, sqlSource);
+		configuration.addMappedStatement(ms);
+
+		SqlSession sqlSession = new DefaultSqlSession(configuration, getExcutor(configuration), false);
+
+		Employee employee = sqlSession.selectOne("com.lrs.selectEmployee", 7566);
+
+		log.info(employee.toString());
+		sqlSession.close();
 	}
 }
