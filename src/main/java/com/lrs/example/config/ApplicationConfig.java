@@ -37,6 +37,7 @@ public class ApplicationConfig implements EnvironmentAware {
 		dataSource.setJdbcUrl(env.getProperty("jdbc.url"));
 		dataSource.setUser(env.getProperty("jdbc.username"));
 		dataSource.setPassword(env.getProperty("jdbc.password"));
+		
 		return dataSource;
 	}
 
