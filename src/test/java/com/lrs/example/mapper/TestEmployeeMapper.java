@@ -38,7 +38,9 @@ public class TestEmployeeMapper {
 		int count = mapper.count();
 		assertEquals(16, count);
 	}
-
+	/**
+	 * https://github.com/mybatis/mybatis-3/issues/206
+	 */
 	@Test
 	public void testPageQuery() {
 		List<Employee> list = mapper.query(5, 8);

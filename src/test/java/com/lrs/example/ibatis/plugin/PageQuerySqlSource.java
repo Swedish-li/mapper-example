@@ -15,6 +15,7 @@ public class PageQuerySqlSource implements SqlSource {
 	private String sql;
 	private List<ParameterMapping> parameterMappings;
 	private Configuration configuration;
+	@SuppressWarnings("unused")
 	private SqlSource original;
 
 	private RowBounds rowBounds;
