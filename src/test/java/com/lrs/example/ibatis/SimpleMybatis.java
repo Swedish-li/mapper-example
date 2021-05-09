@@ -59,7 +59,7 @@ public class SimpleMybatis {
 
 		final Executor executor = getExcutor(configuration);
 
-		SqlSource sqlSource = new StaticSqlSource(configuration, "select * from emp");
+		SqlSource sqlSource = new StaticSqlSource(configuration, "select * from employees");
 
 		MappedStatement ms = new MappedStatement.Builder(configuration, "com.lrs.selectAll", sqlSource,
 				SqlCommandType.SELECT).resultMaps(getResultMaps(configuration)).cache(getCache()).build();

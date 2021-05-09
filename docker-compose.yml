@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  app:
+    image: maven:3.5-jdk-8
+    command: sh -c "mvn install"
+    ports:
+      - 8000:8080
+    working_dir: /app
+    volumes:
+      - ./:/app
+
+  oracle-db:
+    image: my-oracle-db
+    build: db/.
+    ports:
+        - 49161:1521
+        - 5500:5500
+    environment: 
+        ORACLE_ALLOW_REMOTE: 'true'

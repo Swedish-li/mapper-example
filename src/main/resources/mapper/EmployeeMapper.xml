@@ -3,20 +3,20 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lrs.example.mapper.EmployeeMapper">
 	<resultMap type="Employee" id="employeeMap">
-		<id column="empno" property="id" />
-		<result column="ename" property="name" />
-		<result column="job" property="job" />
-		<result column="mgr" property="mgr" />
-		<result column="hiredate" property="hiredate" />
-		<result column="sal" property="sal" />
-		<result column="comm" property="comm" />
-		<result column="deptno" property="deptNo" />
+		<id column="EMPLOYEE_ID" property="id" />
+		<result column="LAST_NAME" property="name" />
+		<result column="JOB_ID" property="jobId" />
+		<result column="MANAGER_ID" property="managerId" />
+		<result column="HIRE_DATE" property="hireDate" />
+		<result column="SALARY" property="salary" />
+		<result column="COMMISSION_PCT" property="commissionPct" />
+		<result column="DEPARTMENT_ID" property="departmentId" />
 	</resultMap>
 	<!-- include的property子元素无效 -->
 	<select id="query" resultMap="employeeMap">
 		<bind name="alias" value="'tb'" />
 		<bind name="querySql"
-			value="'SELECT empno,ename,job,mgr,hiredate,sal,comm,deptno FROM emp ORDER BY sal'" />
+			value="'SELECT EMPLOYEE_ID,LAST_NAME,JOB_ID,MANAGER_ID,HIRE_DATE,SALARY,COMMISSION_PCT,DEPARTMENT_ID FROM employees ORDER BY SALARY'" />
 		<include refid="pageQuerySql" />
 	</select>
 	
@@ -43,6 +43,6 @@
 	</sql>
 
 	<select id="count" resultType="int">
-		SELECT COUNT(*) FROM emp
+		SELECT COUNT(*) FROM employees
 	</select>
 </mapper>

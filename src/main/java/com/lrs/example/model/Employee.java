@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+
 /**
  * EMP 实体
  * 
@@ -16,25 +17,31 @@ import lombok.Data;
  */
 
 @Data
-@Table(name = "emp")
+@Table(name = "employees")
 public class Employee {
 	@Id
-	@Column(name = "empno")
+	@Column(name = "employee_id")
 	private int id;
 
-	@Column(name = "ename")
+	@Column(name = "last_name")
 	private String name;
 
-	private String job;
+	private String firstName;
 
-	private int mgr;
+	private String email;
 
-	private Date hiredate;
+	private String phoneNumber;
 
-	private BigDecimal sal;
+	private String jobId;
 
-	private BigDecimal comm;
+	private int managerId;
+
+	private BigDecimal salary;
+
+	private BigDecimal commissionPct;
+
+	private int departmentId;
 	
-	@Column(name = "deptno")
-	private Integer deptNo;
+	@Column(name = "hire_date")
+	private Date hireDate;
 }

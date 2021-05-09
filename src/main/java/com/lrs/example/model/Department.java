@@ -4,26 +4,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-@Table(name = "dept")
+@Table(name = "departments")
 @Entity
 public class Department {
 	@Id
-	@Column(name = "deptno")
+	@Column(name = "department_id")
 	private Integer id;
 
-	@Column(name = "dname")
+	@Column(name = "department_name")
 	private String name;
 
-	@Column(name = "loc")
-	private String location;
+	private int locationId;
 
-	@Transient
-	private Integer status;
+	private int managerId;
 }

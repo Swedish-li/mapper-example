@@ -1,8 +1,9 @@
 package com.lrs.example.config;
 
-import javax.annotation.Resource;
+// import javax.annotation.Resource;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 @DependsOn("dataSource")
 public class TransactionConfig implements TransactionManagementConfigurer {
 
-	@Resource
+	@Autowired
 	private DataSource dataSource;
 
 	@Override

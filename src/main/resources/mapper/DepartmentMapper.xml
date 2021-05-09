@@ -5,10 +5,10 @@
 	<!-- 存储过程调用  -->
 	<insert id="insertDept" statementType="CALLABLE" parameterType="Department">
 		{call p_insert_dept(
-			#{id,mode=IN,jdbcType=VARCHAR},
+			#{id,mode=OUT,jdbcType=INTEGER},
 			#{name,mode=IN,jdbcType=VARCHAR},
-			#{location,mode=IN,jdbcType=VARCHAR},
-			#{status,mode=OUT,jdbcType=VARCHAR}
+			#{managerId,mode=IN,jdbcType=INTEGER},
+			#{locationId,mode=IN,jdbcType=INTEGER}
 		)}
 	</insert>
 </mapper>

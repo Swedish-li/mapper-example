@@ -2,10 +2,10 @@ package com.lrs.example.mapper;
 
 import static org.junit.Assert.*;
 
-import javax.annotation.Resource;
-
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -16,19 +16,20 @@ import com.lrs.example.model.Department;
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class DepartmentMapperTest {
 
-	@Resource
+	@Autowired
 	DepartmentMapper mapper;
 
 	@Test
 	@Commit
+	@Ignore
 	public void testInsertDept() {
 		Department dept = new Department()
-				.setId(88)
-				.setLocation("shanghai")
+				.setManagerId(100)
+				.setLocationId(1500)
 				.setName("tech");
 		mapper.insertDept(dept);
 
-		assertEquals(Integer.valueOf(1), dept.getStatus());
+		assertTrue(dept.getId() > 270);
 
 		// 数据删除
 		int count = mapper.delete(dept);
